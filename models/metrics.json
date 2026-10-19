@@ -1,0 +1,45 @@
+{
+  "best_model": "logistic_regression",
+  "test_size": 0.2,
+  "accuracy": 0.7654166666666666,
+  "macro_precision": 0.766082972853028,
+  "macro_recall": 0.7654166666666667,
+  "macro_f1": 0.7656573994765279,
+  "per_class": {
+    "negative": {
+      "precision": 0.7707662588538313,
+      "recall": 0.748125,
+      "f1": 0.7592768791627021,
+      "support": 1600
+    },
+    "neutral": {
+      "precision": 0.676829268292683,
+      "recall": 0.69375,
+      "f1": 0.6851851851851852,
+      "support": 1600
+    },
+    "positive": {
+      "precision": 0.85065339141257,
+      "recall": 0.854375,
+      "f1": 0.8525101340816963,
+      "support": 1600
+    }
+  },
+  "confusion_matrix": [
+    [
+      1197,
+      349,
+      54
+    ],
+    [
+      304,
+      1110,
+      186
+    ],
+    [
+      52,
+      181,
+      1367
+    ]
+  ]
+}
