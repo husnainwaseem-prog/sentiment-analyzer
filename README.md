@@ -84,6 +84,26 @@ Run the tests:
 pytest tests/ -q
 ```
 
+### Example API call
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"text": "This cream is amazing, my skin loves it!"}'
+# {"label":"positive","confidence":0.9177,"probabilities":{"negative":0.0213,"neutral":0.061,"positive":0.9177}}
+```
+
+## Results (test set, n = 4,800)
+
+| Model               | Accuracy | Precision (macro) | Recall (macro) | F1 (macro) |
+| ------------------- | -------- | ----------------- | -------------- | ---------- |
+| Naive Bayes         | 0.7538   | 0.7573            | 0.7538         | 0.7547     |
+| Logistic Regression | **0.7654** | **0.7661**      | **0.7654**     | **0.7657** |
+
+![Confusion matrix](models/confusion_matrix.png)
+
+Full per-class scores and analysis are in `REPORT.md`.
+
 ## Features
 
 - Real public dataset (Amazon Reviews 2023), class-balanced, reproducible
@@ -97,4 +117,6 @@ pytest tests/ -q
 - Bag-of-words TF-IDF: word order and sarcasm are mostly lost; 3-star
   "neutral" reviews are the hardest class (F1 ≈ 0.69).
 - Trained on Beauty-category reviews; slang or other domains may perform worse.
-- The default model is extractive-style classification, not generative.
+- Model selection uses the same held-out test split that is reported, so the
+  headline numbers are slightly optimistic; a separate validation split is the
+  next improvement (see `REPORT.md`).

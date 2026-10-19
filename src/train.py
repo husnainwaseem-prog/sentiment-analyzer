@@ -105,7 +105,7 @@ def evaluate(model, X_test, y_test) -> dict:
 
 def plot_confusion_matrix(cm, path=CM_PATH) -> None:
     fig, ax = plt.subplots(figsize=(6, 5))
-    im = ax.imshow(cm)
+    im = ax.imshow(cm, cmap="Blues")
     ax.set_xticks(range(len(CLASSES)))
     ax.set_yticks(range(len(CLASSES)))
     ax.set_xticklabels(CLASSES)
@@ -115,7 +115,10 @@ def plot_confusion_matrix(cm, path=CM_PATH) -> None:
     ax.set_title("Confusion matrix (best model, test set)")
     for i in range(len(CLASSES)):
         for j in range(len(CLASSES)):
-            ax.text(j, i, cm[i][j], ha="center", va="center")
+            ax.text(
+                j, i, cm[i][j], ha="center", va="center",
+                color="white" if cm[i][j] > max(max(r) for r in cm) / 2 else "black",
+            )
     fig.colorbar(im, ax=ax)
     fig.tight_layout()
     path.parent.mkdir(parents=True, exist_ok=True)
